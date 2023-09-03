@@ -27,10 +27,9 @@ app.use("/api", students);
 app.use("/api", sessionRoute);
 app.use("/api", questionRoutes);
 
-// app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
-// });
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
+});
 app.use(ErrorMiddleWare);
 module.exports = app;
