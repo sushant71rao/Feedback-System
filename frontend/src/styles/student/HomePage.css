@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+.student-body {
+  background: linear-gradient(to right, #5b61ed 50%, white 50%);
+  min-height: 100vh;
+}
+main {
+  margin: 4rem 1rem;
+  grid-area: body;
+}
+
+.info > h3 {
+  color: aliceblue;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+.info {
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  font-size: 20px;
+  margin: 3rem;
+  max-width: 40rem;
+}
+.img-txt {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.img-txt > img {
+  width: 500px;
+  height: 200px;
+  margin: 3rem;
+}
+.white-btn {
+  margin-right: 20px;
+  width: 130px;
+  height: 33px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  font-size: 14px;
+  border-radius: 5px;
+  color: blue;
+  background-color: rgb(210, 210, 210);
+  border: 0.1px solid rgb(255, 255, 255);
+}
+button:hover {
+  background-color: #4d50c1;
+  cursor: pointer;
+  color: aliceblue;
+  border: 1px solid rgb(168, 168, 168);
+}
+.full-width {
+  width: 100%;
+}
+.imginfo {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.testimonials {
+  padding: 20px;
+  width: min(98vw, 55rem);
+  border: 3px solid #5b61ed;
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  background-color: aliceblue;
+  border-radius: 5px;
+  box-shadow: 12px 20px 54px 8px rgba(0, 0, 0, 0.2);
+}
+
+.center h4 {
+  width: 100%;
+  margin: 6rem 4rem;
+  font-size: 30px;
+  text-align: left;
+  /* background-color: #5b61ed; */
+  /* border: 4px solid white; */
+  color: rgb(255, 255, 255);
+}
+
+.testimonials > img {
+  border-radius: 200px;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.flex > div {
+  margin-right: 20px;
+  font-size: 21px;
+  font-weight: 500;
+  font-style: italic;
+
+  /* color: #5b61ed; */
+}
+@media (max-width: 868px) {
+ 
+  .student-body {
+    background: none;
+    background-color: #4d50c1;
+  }
+  .info {
+    text-align: left;
+  }
+  div h4 {
+    text-align: center;
+    /* margin: 0px; */
+  }
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-txt > img {
+    display: none;
+  }
+}

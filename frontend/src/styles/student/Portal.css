@@ -1,0 +1,146 @@
+.portal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+  font-size: 20px;
+  margin: 2rem 8vw;
+  font-weight: 900;
+  color: aliceblue;
+}
+.portal > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+select {
+  background-color: white;
+  border-radius: 4px;
+  height: 2.7rem;
+  font-size: 16px;
+  padding: 6px;
+  font-weight: 600;
+}
+
+select > option {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px 100px #000000 inset;
+  font-weight: bolder;
+}
+select > option :hover {
+  background-color: black;
+}
+.form-n-instruction {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap-reverse;
+}
+.instructions {
+  padding: 35px;
+  letter-spacing: 0.3px;
+}
+.instructions > ul {
+  display: flex;
+  font-size: 17px;
+  font-weight: bolder;
+  flex-direction: column;
+  gap: 6px;
+}
+.instructions > h2 {
+  text-align: center;
+  padding: 20px;
+  color: rgb(255, 166, 0);
+  font-size: 34px;
+  font-weight: bolder;
+}
+
+.portal-submit {
+  aspect-ratio: 16/9;
+  width: 4.3rem;
+  border-radius: 6px;
+  font-size: 15px;
+  margin: 2px;
+  border: none;
+  font-weight: 600;
+  color: aliceblue;
+  background-color: rgb(79, 183, 44);
+}
+.portal-submit:hover {
+  background-color: rgb(5, 147, 255);
+  cursor: pointer;
+}
+.feedback-form {
+  font-weight: 600;
+  min-height: 50rem;
+  color: rgb(0, 0, 0);
+  /* background-color: #5b61ed; */
+}
+.feedback > h3 {
+  /* margin: 3rem; */
+  font-size: 30px;
+  background-color: rgb(255, 132, 0);
+  padding: 9px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  color: #71461b;
+}
+.feedback-form > div {
+  display: flex;
+  min-width: 30vw;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 3rem;
+}
+.feedback {
+  box-shadow: rgb(0, 0, 0, 0.3) 1px 1px 100px;
+  padding: 1rem;
+  margin: 4vw 22vw;
+  min-height: 37rem;
+  min-width: 30vw;
+  background-color: #ededed;
+  border: 3px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.qna {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0rem;
+  font-size: 20px;
+  flex-wrap: wrap;
+}
+.Radios {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+}
+.question {
+  /* width: 35rem; */
+  text-align: left;
+}
+
+@media (max-width: 868px) {
+  .qna {
+    /* background-color: orange; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* text-align: center; */
+    /* align-items: center; */
+  }
+  .instructions li {
+    color: rgb(255, 255, 255);
+  }
+  .feedback,
+  .feedback-form > div {
+    background-color: rgb(228, 228, 228);
+    color: #000000;
+    text-align: center;
+  }
+  .question {
+    text-align: left;
+  }
+}
