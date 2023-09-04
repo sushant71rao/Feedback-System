@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "private": true,
-  "proxy": "https://feedback-backend-1.onrender.com",
+  "proxy": "http://localhost:5000",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

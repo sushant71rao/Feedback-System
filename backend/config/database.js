@@ -8,7 +8,7 @@ const connectDatabase = () => {
     .then((data) => {
       console.log(
         `DATABASE CONNECTED SUCCESSFULLY WITH SERVER: ${data.connection.name}`
-      );
+        );
     })
     .catch((e) => {
       console.warn(e);
