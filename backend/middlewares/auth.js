@@ -5,7 +5,7 @@ const teacherModel = require("../models/teacherModel");
 const { Student } = require("../models/classModels");
 
 exports.isAuthenticated = catchAsyncError(async (req, res, next) => {
-  console.log(req);
+  console.log(req.cookie);
   const { token } = req.cookies;
 
   if (!token) {
