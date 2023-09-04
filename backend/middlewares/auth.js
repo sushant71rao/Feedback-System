@@ -5,7 +5,9 @@ const teacherModel = require("../models/teacherModel");
 const { Student } = require("../models/classModels");
 
 exports.isAuthenticated = catchAsyncError(async (req, res, next) => {
+  console.log(req);
   const { token } = req.cookies;
+
   if (!token) {
     return next(new ErrorHandler("Please login First"));
   }
