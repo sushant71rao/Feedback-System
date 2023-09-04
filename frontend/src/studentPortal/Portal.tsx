@@ -77,22 +77,19 @@ const Portal = () => {
   const [question, setQuestions] = useState<Questionarrie>();
   let fetchfn = async () => {
     let temp = await axios.get(
-      ` http://localhost:5000/api/getsessions?isActive=true`,
-      {
-        withCredentials: true, //most and most important thing
-      }
-    );
-    console.log(temp?.data?.session[0]);
-    let temp2 = await axios.get(`http://localhost:5000/api/teachers`, {
-      withCredentials: true,
-    });
-
-    let questionResponse = await axios.get(
-      "http://localhost:5000/api/getquestions",
+      import.meta.env.VITE_GET_SESSION + `?isActive=true`,
       {
         withCredentials: true,
       }
     );
+    console.log(temp?.data?.session[0]);
+    let temp2 = await axios.get(import.meta.env.VITE_GET_TEACHERS, {
+      withCredentials: true,
+    });
+
+    let questionResponse = await axios.get(import.meta.env.VITE_GET_QUESTIONS, {
+      withCredentials: true,
+    });
     setQuestions(questionResponse.data.questions[0]);
     setTeacher(temp2.data.teachers);
     dispatch({
@@ -119,7 +116,7 @@ const Portal = () => {
     let votefn = async () => {
       try {
         let transfer = await axios.post(
-          "http://localhost:5000/api/vote",
+          import.meta.env.VITE_ADD_VOTE,
           {
             T_Id: Currstate.teacher._id,
             Session_id: Currstate.session.Name,

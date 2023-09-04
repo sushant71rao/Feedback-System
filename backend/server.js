@@ -1,6 +1,7 @@
 const connectDatabase = require("./config/database");
-const app = require("./app");
 const dotenv = require("dotenv");
+dotenv.config({ path: "config/config.env" });
+const app = require("./app");
 
 process.on("uncaughtException", (err) => {
   console.error("Uncaught Exception thrown :", err.message);
@@ -8,7 +9,6 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: "config/config.env" });
 connectDatabase();
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on http://localhost:${process.env.PORT}`);

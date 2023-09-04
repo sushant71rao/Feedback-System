@@ -18,6 +18,7 @@ app.use(
     credentials: true,
   })
 );
+// console.log(process.env.FRONTEND_URL);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", teachers);
@@ -27,9 +28,10 @@ app.use("/api", students);
 app.use("/api", sessionRoute);
 app.use("/api", questionRoutes);
 
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
+// });
+
 app.use(ErrorMiddleWare);
 module.exports = app;
