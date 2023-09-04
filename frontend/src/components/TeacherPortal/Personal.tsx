@@ -137,7 +137,8 @@ const Personal = () => {
       let response = await axios
         .get(import.meta.env.VITE_GET_COMPUTED_VOTES + `:/?${query}`, {
           withCredentials: true,
-        })
+        }
+        )
         .catch((e) => {
           console.log(e.response.data);
           // toast.error(e.response.data.message);

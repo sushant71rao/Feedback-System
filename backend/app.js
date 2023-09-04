@@ -10,15 +10,14 @@ const ErrorMiddleWare = require("./middlewares/error");
 const sessionRoute = require("./routes/sessionRoute");
 const questionRoutes = require("./routes/questionRoutes");
 var cors = require("cors");
-const path = require("path");
+// const path = require("path");
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: true,
     credentials: true,
   })
 );
-// console.log(process.env.FRONTEND_URL);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", teachers);
