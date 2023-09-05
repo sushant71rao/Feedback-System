@@ -42,7 +42,7 @@ const SideNavBar = () => {
         &#10060;
       </p>
       <div className="logo">
-        <img src="/src/images/FEEDBACK_SYMBOL.jpg" width={40}></img>
+        <img src="images/FEEDBACK_SYMBOL.jpg" width={40}></img>
         <span>FEEDBACK SYSTEM</span>
       </div>
       <div className="route-logout">

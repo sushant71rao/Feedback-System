@@ -1,7 +1,7 @@
 import { Avatar, Chip } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import  { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import { Teacher, Vote } from "../../types/types";
 import TopNav from "./Topnav";
@@ -22,7 +22,6 @@ const Ranking = () => {
   });
   // console.log(query);
   let [DeptVotes, setDeptVotes] = useState<Vote[]>([]);
-
 
   let Teachers = useQuery<Teacher[]>([`Teachers`], async () => {
     let data = await axios.get(
@@ -105,7 +104,7 @@ const Ranking = () => {
                                   </div>
                                   <img
                                     src={
-                                      "src/images/" +
+                                      "images/" +
                                       String(
                                         ind == 0
                                           ? "firstimg.jpg"

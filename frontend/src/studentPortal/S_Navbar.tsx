@@ -18,7 +18,7 @@ const StudentNavbar = () => {
       <div className="nav-parent" style={{ gridArea: "nav" }}>
         <nav>
           <div>
-            <img src="src\images\FEEDBACK_SYMBOL.jpg" alt="" width={40} />
+            <img src="images\FEEDBACK_SYMBOL.jpg" alt="" width={40} />
             <span>FEEDBACK SYSTEM</span>
           </div>
           <span
