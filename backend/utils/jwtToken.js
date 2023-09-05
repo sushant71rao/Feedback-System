@@ -8,7 +8,7 @@ let sendToken = (user, statuscode, res) => {
     httpOnly: true,
   };
   console.log("generated toked : ", token);
-  res.status(statuscode).cookie("token", token, options).json({
+  res.cookie("token", token, options).status(statuscode).json({
     success: true,
     user,
     token,

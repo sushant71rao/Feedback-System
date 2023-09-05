@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const app = express();
+app.use(cookieParser());
 const teachers = require("./routes/teacherRoutes");
 const Votes = require("./routes/voteRoute");
 const classes = require("./routes/classRoutes");
@@ -16,10 +17,20 @@ app.use(
   cors({
     origin: true,
     credentials: true,
+
+    optionSuccessStatus: 200,
+    Headers: true,
+    exposedHeaders: "Set-Cookie",
+    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Access-Control-Allow-Origin",
+      "Content-Type",
+      "Authorization",
+    ],
   })
 );
 app.use(express.json());
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use("/api", teachers);
 app.use("/api", Votes);
 app.use("/api", classes);
