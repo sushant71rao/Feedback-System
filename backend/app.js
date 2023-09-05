@@ -15,7 +15,7 @@ const path = require("path");
 
 app.use(
   cors({
-    origin: true,
+    origin: process.env.FRONTEND_URL,
     credentials: true,
     optionSuccessStatus: 200,
     Headers: true,
