@@ -9,7 +9,7 @@ let sendToken = (user, statuscode, res, req) => {
     secure: true,
     sameSite: "none",
   };
-  console.log("generated toked : ", token);
+  // console.log("generated toked : ", token);
   res.cookie("token", token, options).status(statuscode).json({
     success: true,
     user,
