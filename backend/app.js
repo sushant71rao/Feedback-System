@@ -17,15 +17,15 @@ app.use(
   cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
-    optionSuccessStatus: 200,
-    Headers: true,
-    exposedHeaders: "Set-Cookie",
-    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-    allowedHeaders: [
-      "Access-Control-Allow-Origin",
-      "Content-Type",
-      "Authorization",
-    ],
+    // optionSuccessStatus: 200,
+    // Headers: true,
+    // exposedHeaders: "Set-Cookie",
+    // methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+    // allowedHeaders: [
+    //   "Access-Control-Allow-Origin",
+    //   "Content-Type",
+    //   "Authorization",
+    // ],
   })
 );
 app.use(express.json());

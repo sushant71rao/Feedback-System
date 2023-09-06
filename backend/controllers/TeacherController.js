@@ -87,7 +87,7 @@ exports.LoginTeacher = catchAsyncError(async (req, res, next) => {
       new ErrorHandler("Please enter correct email and password", 400)
     );
   }
-  sendToken(teacher, 200, res);
+  sendToken(teacher, 200, res, req);
 });
 exports.ChangePassword = catchAsyncError(async (req, res, next) => {
   let teacher = await Teacher.findById(req.user._id);
