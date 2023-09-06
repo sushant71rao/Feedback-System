@@ -1,4 +1,5 @@
 let sendToken = (user, statuscode, res, req) => {
+  
   const token = user.getJwtToken();
   //
   const options = {
@@ -6,7 +7,7 @@ let sendToken = (user, statuscode, res, req) => {
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
-    sameSite: "none",
+    // sameSite: "none",
     // secure: true,
   };
   console.log("generated toked : ", token);
