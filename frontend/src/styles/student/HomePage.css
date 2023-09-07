@@ -21,7 +21,7 @@ main {
   flex-direction: column;
   gap: 2.2rem;
   font-size: 20px;
-  margin: 3rem;
+  margin: 0.5rem;
   max-width: 40rem;
 }
 .img-txt {
@@ -71,6 +71,7 @@ button:hover {
   display: flex;
   gap: 20px;
   justify-content: space-around;
+  align-items: center;
   background-color: aliceblue;
   border-radius: 5px;
   box-shadow: 12px 20px 54px 8px rgba(0, 0, 0, 0.2);
@@ -109,6 +110,7 @@ button:hover {
   .info {
     text-align: left;
   }
+
   div h4 {
     text-align: center;
     /* margin: 0px; */
