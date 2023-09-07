@@ -95,7 +95,7 @@ select > option :hover {
 .feedback {
   box-shadow: rgb(0, 0, 0, 0.3) 1px 1px 100px;
   padding: 1rem;
-  margin: 4vw 22vw;
+  margin: 4vw 12vw;
   min-height: 37rem;
   min-width: 30vw;
   background-color: #ededed;
@@ -138,6 +138,7 @@ select > option :hover {
   .feedback-form > div {
     background-color: rgb(228, 228, 228);
     color: #000000;
+    
     text-align: center;
   }
   .question {

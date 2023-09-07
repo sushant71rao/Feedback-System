@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 .student-body {
-  background: linear-gradient(to right, #5b61ed 50%, white 50%);
+  background: linear-gradient(to right, #494edf 50%, white 50%);
   min-height: 100vh;
 }
 main {
@@ -100,14 +100,11 @@ button:hover {
   font-size: 21px;
   font-weight: 500;
   font-style: italic;
-
-  /* color: #5b61ed; */
 }
 @media (max-width: 868px) {
- 
   .student-body {
     background: none;
-    background-color: #4d50c1;
+    background-color: #494edf;
   }
   .info {
     text-align: left;
