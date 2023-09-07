@@ -18,7 +18,7 @@ import {
 const ImageInfo = () => {
   let [ImgData, setData] = useState<imgArr>();
   let fetchfn = async () => {
-    let res = await axios.get("images.json");
+    let res = await axios.get("/images.json");
     setData(res.data);
   };
   useEffect(() => {

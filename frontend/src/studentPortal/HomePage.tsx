@@ -15,7 +15,7 @@ const HomePage = () => {
             <button className="white-btn">Portal</button>
           </Link>
         </div>
-        <img src="\images\feedback_img.jpg" alt="img" />
+        <img src="/images/feedback_img.jpg" alt="img" />
       </div>
       <div className="full-width">
         <ImageInfo></ImageInfo>

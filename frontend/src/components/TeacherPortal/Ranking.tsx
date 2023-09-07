@@ -104,7 +104,7 @@ const Ranking = () => {
                                   </div>
                                   <img
                                     src={
-                                      "images/" +
+                                      "/images/" +
                                       String(
                                         ind == 0
                                           ? "firstimg.jpg"

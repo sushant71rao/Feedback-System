@@ -11,21 +11,10 @@ const ErrorMiddleWare = require("./middlewares/error");
 const sessionRoute = require("./routes/sessionRoute");
 const questionRoutes = require("./routes/questionRoutes");
 var cors = require("cors");
-const path = require("path");
-
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
-    // optionSuccessStatus: 200,
-    // Headers: true,
-    // exposedHeaders: "Set-Cookie",
-    // methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-    // allowedHeaders: [
-    //   "Access-Control-Allow-Origin",
-    //   "Content-Type",
-    //   "Authorization",
-    // ],
   })
 );
 app.use(express.json());
@@ -36,11 +25,6 @@ app.use("/api", classes);
 app.use("/api", students);
 app.use("/api", sessionRoute);
 app.use("/api", questionRoutes);
-
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
-});
 
 app.use(ErrorMiddleWare);
 module.exports = app;

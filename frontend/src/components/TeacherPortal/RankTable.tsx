@@ -1,4 +1,3 @@
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -58,7 +57,7 @@ let RankTable = (Props: props) => {
                 {ind < 3 && (
                   <img
                     src={
-                      "src/images/" +
+                      "/images/" +
                       String(
                         ind == 0
                           ? "firstimg.jpg"
