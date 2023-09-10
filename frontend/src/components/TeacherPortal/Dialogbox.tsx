@@ -66,7 +66,7 @@ const DialogBox = (Props: props) => {
     event: React.SyntheticEvent<unknown>,
     reason?: string
   ) => {
-    // console.log(event.currentTarget);
+    console.log(event.currentTarget);
 
     if (reason !== "backdropClick") {
       setOpen(false);
