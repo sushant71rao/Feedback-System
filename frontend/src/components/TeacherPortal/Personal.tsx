@@ -3,6 +3,7 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import PrintIcon from "@mui/icons-material/Print";
 import { Questionarrie } from "../../types/types";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
@@ -246,9 +247,16 @@ const Personal = () => {
           count={currentState?.votes?.info?.count | 0}
           search={false}
         />
-        <Button variant="contained" onClick={printfn}>
-          Print
-        </Button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <Button variant="outlined" color="success" onClick={printfn}>
+            <PrintIcon></PrintIcon>
+          </Button>
+        </div>
         <div className="printable">
           <div className="card-container">
             <div className="cards">
