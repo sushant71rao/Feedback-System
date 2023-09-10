@@ -25,16 +25,16 @@ const DialogBox = (Props: props) => {
   const [chip, setchip] = React.useState<{ [key: string]: string }>({});
 
   React.useEffect(() => {
-    axios
-      .get(import.meta.env.VITE_GET_TEACHERS + `?${text}`, {
-        withCredentials: true,
-      })
-      .then((res) =>
-        // console.log(res.data)
-        res.data?.teachers?.map((e: any) => {
-          setchip((old) => ({ ...old, [e.NAME]: e._id }));
+    text != "" &&
+      axios
+        .get(import.meta.env.VITE_GET_TEACHERS + `?${text}`, {
+          withCredentials: true,
         })
-      );
+        .then((res) =>
+          res.data?.teachers?.map((e: any) => {
+            setchip((old) => ({ ...old, [e.NAME]: e._id }));
+          })
+        );
     console.log(chip);
   }, []);
 
@@ -66,7 +66,7 @@ const DialogBox = (Props: props) => {
     event: React.SyntheticEvent<unknown>,
     reason?: string
   ) => {
-    console.log(event.currentTarget);
+    // console.log(event.currentTarget);
 
     if (reason !== "backdropClick") {
       setOpen(false);
@@ -86,65 +86,82 @@ const DialogBox = (Props: props) => {
         ADD TEACHERS
       </Button>
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-        <DialogTitle>TEACHERS</DialogTitle>
-        <DialogContent>
-          <TextField
-            id="outlined-basic"
-            label="Search"
-            variant="filled"
-            value={search}
-            onChange={(e) => {
-              setsearch(e.target.value);
-            }}
-          />
-          <div>
-            {fetch &&
-              fetch?.map((e, i) => {
-                return (
-                  <div
-                    className="search-drops"
-                    key={i}
-                    onClick={() => {
-                      setchip((old) => ({
-                        ...old,
-                        [e.NAME]: String(e._id),
-                      }));
-                    }}
-                  >
-                    {e.NAME}
-                  </div>
-                );
-              })}
-          </div>
-          <div className="text-chips">
-            {
-              <div className="chips">
-                {Object.entries(chip).map((e) => {
+        <div
+          style={{
+            border: "10px solid #69ccff",
+            minHeight: "30rem",
+            width: "30rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <DialogTitle sx={{ textAlign: "center", fontWeight: "bold",color:"#444444" }}>
+            SEARCH AND ADD TEACHERS
+          </DialogTitle>
+          <DialogContent>
+            <TextField
+              sx={{ width: "100%" }}
+              id="outlined-basic"
+              label="Search"
+              variant="filled"
+              value={search}
+              onChange={(e) => {
+                setsearch(e.target.value);
+              }}
+            />
+
+            <div>
+              {fetch &&
+                fetch?.map((e, i) => {
                   return (
-                    <span>
+                    <div
+                      className="search-drops"
+                      key={i}
+                      onClick={() => {
+                        setchip((old) => ({
+                          ...old,
+                          [e.NAME]: String(e._id),
+                        }));
+                      }}
+                    >
+                      {e.NAME}
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="text-chips">
+              {
+                <div className="chips">
+                  {Object.entries(chip).map((e) => {
+                    return (
                       <Chip
                         label={e[0]}
                         color="success"
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
                         onDelete={() => handleDelete(e[0])}
                       />
-                    </span>
-                  );
-                })}
-              </div>
-            }
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button
-            onClick={(e) => {
-              Props.send(Object.values(chip));
-              handleClose(e);
-            }}
-          >
-            Ok
-          </Button>
-        </DialogActions>
+                    );
+                  })}
+                </div>
+              }
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button
+              onClick={(e) => {
+                Props.send(Object.values(chip));
+                handleClose(e);
+              }}
+            >
+              Ok
+            </Button>
+          </DialogActions>
+        </div>
       </Dialog>
     </div>
   );

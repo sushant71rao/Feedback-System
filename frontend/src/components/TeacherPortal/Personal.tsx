@@ -13,6 +13,7 @@ import LineChart from "./LineChart";
 import { useSearchParams } from "react-router-dom";
 import TopNav from "./Topnav";
 import Skeleton from "@mui/material/Skeleton";
+import { Button } from "@mui/material";
 
 type vote = {
   info: any;
@@ -47,8 +48,6 @@ type action = {
 };
 
 const Personal = () => {
-  ////////////
-  ///////////////
   let { teacher } = useContext(AuthContext);
   const [queryParams] = useSearchParams();
   var query = "";
@@ -137,8 +136,7 @@ const Personal = () => {
       let response = await axios
         .get(import.meta.env.VITE_GET_COMPUTED_VOTES + `:/?${query}`, {
           withCredentials: true,
-        }
-        )
+        })
         .catch((e) => {
           console.log(e.response.data);
           // toast.error(e.response.data.message);
@@ -227,6 +225,18 @@ const Personal = () => {
       return x;
     } else return y;
   });
+  let printfn = () => {
+    const printContents = document.querySelector(".printable")?.innerHTML;
+    console.log(printContents);
+    if (!printContents) {
+      console.error(`Element with class ${"printable"} not found.`);
+      return;
+    }
+    const originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+  };
   // console.log(currentState);
   return (
     <>
@@ -236,249 +246,257 @@ const Personal = () => {
           count={currentState?.votes?.info?.count | 0}
           search={false}
         />
-
-        <div className="card-container">
-          <div className="cards">
-            {currentState?.loading ? (
-              <>
-                <Skeleton variant="rectangular" style={{ height: "100%" }} />
-              </>
-            ) : (
-              <div className="info-card">
-                <h2>Average Marks</h2>
-                <div
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: "Bold",
-                    color:
-                      Number(currentState.votes.info.Avg) > 2.5
-                        ? "green"
-                        : "yellow",
-                  }}
-                >
-                  <div className="icon">
-                    <AssignmentRoundedIcon></AssignmentRoundedIcon>
-                  </div>
-                  {((Number(currentState?.votes?.info?.Avg) * 10) / 4).toFixed(
-                    2
-                  )}
-                  %
-                  <div
-                    style={{
-                      fontSize: "12px",
-                      color: "#6d6565",
-                      paddingTop: "5px",
-                      fontWeight: "900",
-                    }}
-                  >
-                    Out of 100%
-                  </div>
-                </div>
-                <div>
-                  <Box
-                    sx={{
-                      "& > legend": { mt: 2 },
-                    }}
-                  >
-                    <Rating
-                      name="read-only"
-                      value={Number(currentState.votes.info.Avg) / 8}
-                      precision={0.5}
-                      readOnly
-                    />
-                  </Box>
-                </div>
-              </div>
-            )}
-            {currentState?.loading ? (
-              <>
-                <Skeleton
-                  variant="rectangular"
-                  height={100}
-                  style={{ height: "100%" }}
-                />
-              </>
-            ) : (
-              <div className="info-card">
-                <h2>Best Rated Question</h2>
-                <div
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "Bold",
-                    color: "green",
-                  }}
-                >
-                  <div className="icon">
-                    <StarRoundedIcon></StarRoundedIcon>
-                  </div>
-                  {
-                    Object.entries(currentState.questions).filter((e) => {
-                      return e[0] == t[0];
-                    })[0][1]
-                  }
-                  <div
-                    style={{
-                      color: "#6d6565",
-                      fontSize: "13px",
-                      paddingTop: "5px",
-                      fontWeight: "900",
-                    }}
-                  >
-                    {((t[1] * 20) / currentState.votes.info.count).toFixed(2)}%
-                    MARKS
-                  </div>
-                </div>
-                <div>
-                  <Box
-                    sx={{
-                      "& > legend": { mt: 2 },
-                    }}
-                  >
-                    <Rating
-                      name="read-only"
-                      value={Number(t[1]) / currentState.votes.info.count}
-                      precision={0.5}
-                      readOnly
-                    />
-                  </Box>
-                </div>
-              </div>
-            )}
-            {currentState?.loading ? (
-              <>
-                <Skeleton
-                  variant="rectangular"
-                  height={100}
-                  style={{ height: "100%" }}
-                />
-              </>
-            ) : (
-              <div className="info-card">
-                <h2>Department Ranking</h2>
-                <div
-                  style={{
-                    fontSize: "28px",
-                    fontWeight: "Bold",
-                    color: "green",
-                  }}
-                >
-                  <div className="icon">
-                    <AnalyticsIcon></AnalyticsIcon>
-                  </div>
-                  {currentState.DepartmentVotes.findIndex((e) => {
-                    return e.info.T_Id == teacher?._id;
-                  }) + 1}
-                  <div
-                    style={{
-                      fontSize: "14px",
-                      color: "#6d6565",
-                      paddingTop: "5px",
-                      fontWeight: "900",
-                    }}
-                  >
-                    In The {teacher?.DEPARTMENT} DEPARTMENT
-                  </div>
-                </div>
-                <div>
-                  <Box
-                    sx={{
-                      "& > legend": { mt: 2 },
-                    }}
-                  >
-                    <Rating
-                      name="read-only"
-                      value={Number(currentState.votes.info.Avg) / 8}
-                      precision={0.5}
-                      readOnly
-                    />
-                  </Box>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {
-            <>
+        <Button variant="contained" onClick={printfn}>
+          Print
+        </Button>
+        <div className="printable">
+          <div className="card-container">
+            <div className="cards">
               {currentState?.loading ? (
                 <>
-                  <Skeleton
-                    variant="rectangular"
-                    height={100}
-                    style={{ gridArea: "bar", height: "20vh" }}
-                  />
+                  <Skeleton variant="rectangular" style={{ height: "100%" }} />
                 </>
               ) : (
-                <>
-                  {currentState.votes.info.count != undefined && (
+                <div className="info-card">
+                  <h2>Average Marks</h2>
+                  <div
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: "Bold",
+                      color:
+                        Number(currentState.votes.info.Avg) > 2.5
+                          ? "green"
+                          : "yellow",
+                    }}
+                  >
+                    <div className="icon">
+                      <AssignmentRoundedIcon></AssignmentRoundedIcon>
+                    </div>
+                    {(
+                      (Number(currentState?.votes?.info?.Avg) * 10) /
+                      4
+                    ).toFixed(2)}
+                    %
                     <div
                       style={{
-                        gridArea: "bar",
+                        fontSize: "12px",
+                        color: "#6d6565",
+                        paddingTop: "5px",
+                        fontWeight: "900",
                       }}
-                      className="graph-card"
                     >
-                      <h2>QUESTION WISE ANALYSIS</h2>
-                      <Apex
-                        State={currentState.votes.voteValue}
-                        count={currentState.votes.info.count}
-                        vertical={false}
-                      ></Apex>
+                      Out of 100%
                     </div>
-                  )}
-                </>
+                  </div>
+                  <div>
+                    <Box
+                      sx={{
+                        "& > legend": { mt: 2 },
+                      }}
+                    >
+                      <Rating
+                        name="read-only"
+                        value={Number(currentState.votes.info.Avg) / 8}
+                        precision={0.5}
+                        readOnly
+                      />
+                    </Box>
+                  </div>
+                </div>
               )}
-            </>
-          }
-          {
-            <>
               {currentState?.loading ? (
                 <>
                   <Skeleton
                     variant="rectangular"
                     height={100}
-                    style={{
-                      height: "20vh",
-                    }}
-                  />
-                  <Skeleton
-                    variant="rectangular"
-                    height={100}
-                    style={{
-                      gridArea: "line",
-                      height: "20vh",
-                    }}
+                    style={{ height: "100%" }}
                   />
                 </>
               ) : (
-                <>
-                  {currentState.SessionWise.length > 0 &&
-                    currentState.votes.info.count != undefined && (
-                      <>
-                        <div className="graph-card" style={{ gridArea: "pie" }}>
-                          <h2>SESSION WISE ANALYSIS</h2>
-                          <PieChart
-                            State={currentState.SessionWise}
-                            Marks={{}}
-                            count={0}
-                          />
-                        </div>
-                        <div
-                          className="graph-card"
-                          style={{
-                            gridArea: "line",
-                          }}
-                        >
-                          <h2>SESSION PROGRESSION</h2>
-                          <LineChart
-                            State={currentState.SessionWise}
-                            count={2}
-                          ></LineChart>
-                        </div>
-                      </>
-                    )}
-                </>
+                <div className="info-card">
+                  <h2>Best Rated Question</h2>
+                  <div
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: "Bold",
+                      color: "green",
+                    }}
+                  >
+                    <div className="icon">
+                      <StarRoundedIcon></StarRoundedIcon>
+                    </div>
+                    {
+                      Object.entries(currentState.questions).filter((e) => {
+                        return e[0] == t[0];
+                      })[0][1]
+                    }
+                    <div
+                      style={{
+                        color: "#6d6565",
+                        fontSize: "13px",
+                        paddingTop: "5px",
+                        fontWeight: "900",
+                      }}
+                    >
+                      {((t[1] * 20) / currentState.votes.info.count).toFixed(2)}
+                      % MARKS
+                    </div>
+                  </div>
+                  <div>
+                    <Box
+                      sx={{
+                        "& > legend": { mt: 2 },
+                      }}
+                    >
+                      <Rating
+                        name="read-only"
+                        value={Number(t[1]) / currentState.votes.info.count}
+                        precision={0.5}
+                        readOnly
+                      />
+                    </Box>
+                  </div>
+                </div>
               )}
-            </>
-          }
+              {currentState?.loading ? (
+                <>
+                  <Skeleton
+                    variant="rectangular"
+                    height={100}
+                    style={{ height: "100%" }}
+                  />
+                </>
+              ) : (
+                <div className="info-card">
+                  <h2>Department Ranking</h2>
+                  <div
+                    style={{
+                      fontSize: "28px",
+                      fontWeight: "Bold",
+                      color: "green",
+                    }}
+                  >
+                    <div className="icon">
+                      <AnalyticsIcon></AnalyticsIcon>
+                    </div>
+                    {currentState.DepartmentVotes.findIndex((e) => {
+                      return e.info.T_Id == teacher?._id;
+                    }) + 1}
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        color: "#6d6565",
+                        paddingTop: "5px",
+                        fontWeight: "900",
+                      }}
+                    >
+                      In The {teacher?.DEPARTMENT} DEPARTMENT
+                    </div>
+                  </div>
+                  <div>
+                    <Box
+                      sx={{
+                        "& > legend": { mt: 2 },
+                      }}
+                    >
+                      <Rating
+                        name="read-only"
+                        value={Number(currentState.votes.info.Avg) / 8}
+                        precision={0.5}
+                        readOnly
+                      />
+                    </Box>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {
+              <>
+                {currentState?.loading ? (
+                  <>
+                    <Skeleton
+                      variant="rectangular"
+                      height={100}
+                      style={{ gridArea: "bar", height: "20vh" }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {currentState.votes.info.count != undefined && (
+                      <div
+                        style={{
+                          gridArea: "bar",
+                        }}
+                        className="graph-card"
+                      >
+                        <h2>QUESTION WISE ANALYSIS</h2>
+                        <Apex
+                          State={currentState.votes.voteValue}
+                          count={currentState.votes.info.count}
+                          vertical={false}
+                        ></Apex>
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            }
+            {
+              <>
+                {currentState?.loading ? (
+                  <>
+                    <Skeleton
+                      variant="rectangular"
+                      height={100}
+                      style={{
+                        height: "20vh",
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      height={100}
+                      style={{
+                        gridArea: "line",
+                        height: "20vh",
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {currentState.SessionWise.length > 0 &&
+                      currentState.votes.info.count != undefined && (
+                        <>
+                          <div
+                            className="graph-card"
+                            style={{ gridArea: "pie" }}
+                          >
+                            <h2>SESSION WISE ANALYSIS</h2>
+                            <PieChart
+                              State={currentState.SessionWise}
+                              Marks={{}}
+                              count={0}
+                            />
+                          </div>
+                          <div
+                            className="graph-card"
+                            style={{
+                              gridArea: "line",
+                            }}
+                          >
+                            <h2>SESSION PROGRESSION</h2>
+                            <LineChart
+                              State={currentState.SessionWise}
+                              count={2}
+                            ></LineChart>
+                          </div>
+                        </>
+                      )}
+                  </>
+                )}
+              </>
+            }
+          </div>
         </div>
       </>
     </>

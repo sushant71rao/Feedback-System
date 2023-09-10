@@ -92,33 +92,37 @@ select > option :hover {
   flex-direction: column;
   gap: 3rem;
 }
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .feedback {
-  box-shadow: rgb(0, 0, 0, 0.3) 1px 1px 100px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   padding: 1rem;
-  margin: 4vw 12vw;
+
   min-height: 37rem;
-  min-width: 30vw;
+  min-width: 60vw;
   background-color: #ededed;
-  border: 3px solid white;
+  border: 3px solid rgba(123, 123, 123, 0.402);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
 }
 .qna {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+  flex-direction: column;
   margin: 10px 0rem;
   font-size: 20px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
-.Radios {
-  display: flex;
-  justify-content: space-between;
-  gap: 22px;
-}
+
 .question {
-  /* width: 35rem; */
   text-align: left;
 }
 
@@ -138,7 +142,7 @@ select > option :hover {
   .feedback-form > div {
     background-color: rgb(228, 228, 228);
     color: #000000;
-    
+
     text-align: center;
   }
   .question {

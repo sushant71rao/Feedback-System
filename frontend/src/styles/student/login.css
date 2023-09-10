@@ -11,7 +11,7 @@
   min-height: 100vh;
   overflow-y: hidden;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(to bottom right, #6f81ad, #042f46);
+  background: linear-gradient(to bottom right, #bec1c8, #82c2e5);
 }
 
 .container {
@@ -23,30 +23,62 @@
 
 .container > .card {
   width: 350px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(243, 243, 243);
   border-radius: 15px;
   padding: 40px;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.remove {
+  display: none;
 }
 
-.card > h2 {
-  color: #fff;
+.selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.selection > div {
+  padding: 1.2rem;
+  border: 2px solid rgba(128, 128, 128, 0.394);
+}
+.card > h1 {
+  font-size: 24px;
+  font-weight: bold;
   text-align: center;
-  font-size: 25px;
-  margin-bottom: 20px;
+  color: #042f46;
+}
+.card > h2 {
+  color: #3875d6;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 7px;
 }
 
 .card > form {
   display: flex;
   flex-direction: column;
+  gap: inherit;
 }
 
 form > label {
   color: #fff;
   margin-bottom: 5px;
 }
-
+#loginbtn{
+  background-color: #70c1ff;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 16px;
+}
+#loginbtn:hover{
+  background-color: #085c9d;
+}
 .card > form > input {
   padding: 10px;
   margin-bottom: 10px;

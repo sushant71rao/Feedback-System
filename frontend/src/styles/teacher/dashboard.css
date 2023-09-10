@@ -38,7 +38,7 @@ header {
   width: 17rem;
   padding: 6px;
   min-height: 100%;
-  background-color: #2b2a4c;
+  background-color: #322653;
 }
 .sidenav > .logo {
   display: flex;
@@ -352,7 +352,11 @@ div > p {
 .chips {
   margin-top: 30px;
   min-height: 4rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
 }
+
 .active {
   background-color: #353461;
 }

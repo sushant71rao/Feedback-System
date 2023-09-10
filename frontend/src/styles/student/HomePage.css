@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 .student-body {
-  background: linear-gradient(to right, #494edf 50%, white 50%);
+  background: linear-gradient(to right, #1D5D9B 50%, white 50%);
   min-height: 100vh;
 }
 main {
@@ -48,8 +48,8 @@ main {
   background-color: rgb(210, 210, 210);
   border: 0.1px solid rgb(255, 255, 255);
 }
-button:hover {
-  background-color: #4d50c1;
+.white-btn:hover {
+  background-color: #b5b5b5;
   cursor: pointer;
   color: aliceblue;
   border: 1px solid rgb(168, 168, 168);
@@ -105,7 +105,7 @@ button:hover {
 @media (max-width: 868px) {
   .student-body {
     background: none;
-    background-color: #494edf;
+    background-color: #1D5D9B;
   }
   .info {
     text-align: left;

@@ -96,7 +96,7 @@ const ClassManage = () => {
                     return e.CLASS == params.row.CLASS;
                   })[0],
                 },
-                api: "updateclass",
+                api: "/updateclass",
                 method: "post",
               },
             },
@@ -234,7 +234,7 @@ const ClassManage = () => {
             <Dialog
               disableEscapeKeyDown
               open={open}
-              onClose={() => handleClose}
+              onClose={() => handleClose()}
             >
               <DialogTitle>
                 <div style={{ color: "#d32f2f", textAlign: "center" }}>
@@ -261,7 +261,7 @@ const ClassManage = () => {
                 <h5>Once Deleted You Cannot Restore it Again</h5>
               </DialogContent>
               <DialogActions>
-                <Button onClick={() => handleClose} variant="contained">
+                <Button onClick={() => handleClose()} variant="contained">
                   CANCEL
                 </Button>
                 <Button

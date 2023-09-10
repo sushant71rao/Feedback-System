@@ -209,50 +209,52 @@ const Portal = () => {
             </div>
           </div>
           {Currstate.session.isValid && Currstate.teacher._id != "" && (
-            <form className="feedback" onSubmit={(e) => Formhandler(e)}>
-              <h3>{"Prof. " + Currstate.teacher?.NAME}</h3>
-              <div className="feedback-form">
-                <div>
-                  {Object.values(question || {})
-                    .slice(1, Object.values(question || {}).length - 1)
-                    .map((e, i) => {
-                      return (
-                        <div className="qna">
-                          <div className="question">
-                            {i + 1 + ") "}
-                            {e.toString()}
-                          </div>
-                          <div className="Radios">
-                            <Box
-                              sx={{
-                                "& > legend": { mt: 2 },
-                              }}
-                            >
-                              <Rating
-                                name="votes"
-                                value={Object.values(Currstate.vote)[i]}
-                                onChange={(event, newValue) => {
-                                  console.log(event);
-                                  dispatch({
-                                    type: "SAVE VOTE",
-                                    payload: {
-                                      question: `q${i}`,
-                                      value: newValue,
-                                    },
-                                  });
+            <div className="form-container">
+              <form className="feedback" onSubmit={(e) => Formhandler(e)}>
+                <h3>{"Prof. " + Currstate.teacher?.NAME}</h3>
+                <div className="feedback-form">
+                  <div>
+                    {Object.values(question || {})
+                      .slice(1, Object.values(question || {}).length - 1)
+                      .map((e, i) => {
+                        return (
+                          <div className="qna">
+                            <div className="question">
+                              {i + 1 + ") "}
+                              {e.toString()}
+                            </div>
+                            <div className="Radios">
+                              <Box
+                                sx={{
+                                  "& > legend": { mt: 2 },
                                 }}
-                              />
-                            </Box>
+                              >
+                                <Rating
+                                  name="votes"
+                                  value={Object.values(Currstate.vote)[i]}
+                                  onChange={(event, newValue) => {
+                                    console.log(event);
+                                    dispatch({
+                                      type: "SAVE VOTE",
+                                      payload: {
+                                        question: `q${i}`,
+                                        value: newValue,
+                                      },
+                                    });
+                                  }}
+                                />
+                              </Box>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                  </div>
                 </div>
-              </div>
-              <Button color="primary" variant="contained" type="submit">
-                SUBMIT
-              </Button>
-            </form>
+                <Button color="primary" variant="contained" type="submit">
+                  SUBMIT
+                </Button>
+              </form>
+            </div>
           )}
         </div>
       ) : (

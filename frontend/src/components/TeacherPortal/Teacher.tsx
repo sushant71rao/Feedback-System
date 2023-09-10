@@ -21,11 +21,6 @@ import Datagrid from "./DataGrid";
 import Loading from "../Loading";
 
 const TeacherManage = () => {
-  const handleClose = (reason?: string) => {
-    if (reason !== "backdropClick") {
-      setOpen(false);
-    }
-  };
   //
   // console.log("render");
 
@@ -34,6 +29,10 @@ const TeacherManage = () => {
   const [loading, setloading] = useState(true);
   const navigate = useNavigate();
   let [teachers, setTeachers] = React.useState<Teacher[]>([]);
+  const Closer = () => {
+    console.log("here boi");
+    setOpen(false);
+  };
   React.useEffect(() => {
     setloading(true);
     axios
@@ -92,8 +91,8 @@ const TeacherManage = () => {
       headerClassName: "custom-header",
       flex: 2.1,
       renderCell: (params) => {
-        const handler = () => {
-          navigate(`/edit/`, {
+        const handlerClick = () => {
+          navigate(`/edit`, {
             state: {
               userinfo: {
                 data: {
@@ -114,7 +113,7 @@ const TeacherManage = () => {
               size="small"
               color="success"
               variant="contained"
-              onClick={() => handler}
+              onClick={() => handlerClick()}
             >
               Take Action
             </Button>
@@ -192,11 +191,7 @@ const TeacherManage = () => {
               <Datagrid Data={teachers} headings={columns}></Datagrid>
             </div>
 
-            <Dialog
-              disableEscapeKeyDown
-              open={open}
-              onClose={() => handleClose}
-            >
+            <Dialog disableEscapeKeyDown open={open} onClose={() => Closer()}>
               <DialogTitle>
                 <div style={{ color: "#d32f2f", textAlign: "center" }}>
                   <CancelIcon style={{ fontSize: "50px" }}></CancelIcon>
@@ -222,14 +217,14 @@ const TeacherManage = () => {
                 <h5>Once Deleted You Cannot Restore it Again</h5>
               </DialogContent>
               <DialogActions>
-                <Button onClick={() => handleClose} variant="contained">
+                <Button onClick={() => Closer()} variant="contained">
                   CANCEL
                 </Button>
                 <Button
                   color="error"
                   variant="contained"
                   onClick={() => {
-                    handleClose();
+                    Closer();
                     setloading(true);
                     axios
                       .delete(
