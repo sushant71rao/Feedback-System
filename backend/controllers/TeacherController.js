@@ -9,6 +9,7 @@ const sendToken = require("../utils/jwtToken");
 const bcrypt = require("bcryptjs");
 const { Classes } = require("../models/classModels");
 const { default: mongoose } = require("mongoose");
+const Vote = require("../models/votesModel");
 
 exports.AddTeacher = catchAsyncError(async (req, res, next) => {
   const teacher = await Teacher.create({
@@ -107,9 +108,8 @@ exports.ChangePassword = catchAsyncError(async (req, res, next) => {
   });
 });
 exports.UpdateTeacher = updateuser(Teacher);
-exports.DeleteTeacher = catchAsyncError(async (req, res, next) => {
-  deleteuser(Teacher);
-});
+exports.DeleteTeacher = deleteuser(Teacher);
+
 exports.ForgotPassword = catchAsyncError(async (req, res, next) => {
   const user = await Teacher.findOne({ EMAIL: req.body.email });
   if (!user) {

@@ -1,4 +1,4 @@
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -20,7 +20,7 @@ const MyAcc = () => {
     let wait = async () => {
       try {
         let change = await axios.post(
-          "http://localhost:5000/api/updatestudent",
+          import.meta.env.VITE_UPDATE_STUDENT,
           {
             ...formData,
           },

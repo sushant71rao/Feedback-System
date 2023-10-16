@@ -2,6 +2,7 @@ const catchAsyncError = require("../middlewares/catchAsyncError");
 const ErrorHandler = require("./ErrorHandler");
 const mongoose = require("mongoose");
 const sendToken = require("./jwtToken");
+const Vote = require("../models/votesModel");
 exports.updateuser = (model) => {
   return catchAsyncError(async (req, res, next) => {
     let id = req.body._id;
@@ -39,15 +40,25 @@ exports.logoutUser = catchAsyncError(async (req, res, next) => {
 
 exports.deleteuser = (model) => {
   return catchAsyncError(async (req, res) => {
-    req.query._id
-      ? (user = await model.deleteOne({
-          _id: new mongoose.Types.ObjectId(req.query._id),
-        }))
-      : "";
-    
+    console.log(req.query);
+    let votesDelete;
+    let user;
+    user = await model.deleteOne({
+      _id: new mongoose.Types.ObjectId(req.query._id),
+    });
+    votesDelete = await Vote.deleteMany({
+      $or: [
+        { T_Id: req.query._id },
+        { Session_id: req.query._id },
+        { Class: req.query.class },
+        { Class: req.query.CLASS },
+      ],
+    });
+    console.log(votesDelete);
     res.status(200).json({
       success: true,
       user,
+      votesDelete,
     });
   });
 };

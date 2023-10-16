@@ -23,6 +23,8 @@
 
 .container > .card {
   width: 350px;
+  min-height: 28rem;
+  /* filter: blur(2px); */
   background-color: rgb(243, 243, 243);
   border-radius: 15px;
   padding: 40px;
@@ -70,13 +72,13 @@ form > label {
   color: #fff;
   margin-bottom: 5px;
 }
-#loginbtn{
+#loginbtn {
   background-color: #70c1ff;
   color: #fff;
   font-weight: bolder;
   font-size: 16px;
 }
-#loginbtn:hover{
+#loginbtn:hover {
   background-color: #085c9d;
 }
 .card > form > input {
