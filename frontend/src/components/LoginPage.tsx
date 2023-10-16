@@ -3,9 +3,9 @@ import "../styles/student/login.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthContext";
-import { CircularProgress, LinearProgress, TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import AxiosInstance from "./AxiosComponent";
-import Loading from "./Loading";
+// import Loading from "./Loading";
 
 const LoginPage = () => {
   const { setTeacher, setStudent } = useContext(AuthContext);
