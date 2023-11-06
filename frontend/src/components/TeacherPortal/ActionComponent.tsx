@@ -1,4 +1,4 @@
-import { Avatar, Button, TextField } from "@mui/material";
+import { Avatar, Button, MenuItem, TextField } from "@mui/material";
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import TopNav from "./Topnav";
@@ -15,6 +15,9 @@ const ActionComponent = () => {
     api: string;
     method: string;
   }>(location.state.userinfo);
+
+  let Roles = ["Admin", "Teacher"];
+
   let [save, setSave] = React.useState(
     user?.keysArr == undefined ? false : true
   );
@@ -29,6 +32,8 @@ const ActionComponent = () => {
     "id",
     "TEACHERS",
     "whomVoted",
+    "ROLE",
+    "Role",
     "_id",
   ];
   let handlesave = () => {
@@ -45,13 +50,12 @@ const ActionComponent = () => {
           ...user.data,
         });
 
-    console.log(temp);
     var method = user?.method || "";
 
     method == "post" &&
       axios
         .post(
-          "http://localhost:5000/api" + String(user.api),
+          import.meta.env.VITE_BACKEND_URL + String(user.api),
           {
             ...temp,
           },
@@ -89,7 +93,6 @@ const ActionComponent = () => {
           toast.error(e.message);
         });
   };
-  console.log(user?.data?.Name);
 
   return (
     <div>
@@ -141,20 +144,40 @@ const ActionComponent = () => {
         </div>
         <div className="account-section">
           {!save ? (
+            //  Checking whether clicked on change button or not
             <>
+              {/* Section for Updating the data */}
               {user?.keysArr == undefined &&
                 Object.keys(user?.data).map((el) => {
                   return (
                     <>
                       {!removeArr.includes(el) && (
-                        <TextField
-                          disabled
-                          type="text"
-                          label={String(el)}
-                          value={user.data[el]}
-                          variant="outlined"
-                        />
+                        <>
+                          <TextField
+                            disabled
+                            type="text"
+                            label={String(el)}
+                            value={user.data[el]}
+                            variant="outlined"
+                          />
+                        </>
                       )}
+                      {el == "Role" && !user.api.includes("student") && (
+                        <TextField
+                          select
+                          disabled
+                          label="Select Role"
+                          defaultValue={user.data[el]}
+                          sx={{ width: "14rem" }}
+                        >
+                          {Roles.map((el, ind) => (
+                            <MenuItem key={ind} value={el}>
+                              {el}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      )}
+
                       {el == "TEACHERS" && (
                         <Button disabled variant="contained">
                           ADD TEACHERS
@@ -177,6 +200,29 @@ const ActionComponent = () => {
                             variant="outlined"
                           />
                         )}
+                        {e == "ROLE" && !user.api.includes("student") && (
+                          <TextField
+                            select
+                            label="Select Role"
+                            defaultValue=" Teacher"
+                            sx={{ width: "14rem" }}
+                            onChange={(event) => {
+                              setUser((old: any) => ({
+                                ...old,
+                                data: {
+                                  ...old.data,
+                                  [e]: event.target.value,
+                                },
+                              }));
+                            }}
+                          >
+                            {Roles.map((el, ind) => (
+                              <MenuItem key={ind} value={el}>
+                                {el}
+                              </MenuItem>
+                            ))}
+                          </TextField>
+                        )}
                         {e == "TEACHERS" && (
                           <Button disabled variant="contained">
                             ADD TEACHERS
@@ -192,6 +238,7 @@ const ActionComponent = () => {
             <>
               {user?.keysArr != undefined && (
                 <>
+                  {/* Creating a new record section */}
                   {user?.keysArr?.map((e: any) => {
                     return (
                       <>
@@ -212,7 +259,30 @@ const ActionComponent = () => {
                             variant="outlined"
                           />
                         )}
-                        {e == "TEACHERS" && (
+                        {e == "ROLE" && !user.api.includes("student") && (
+                          <TextField
+                            select
+                            label="Select Role"
+                            defaultValue=" Teacher"
+                            sx={{ width: "14rem" }}
+                            onChange={(event) => {
+                              setUser((old: any) => ({
+                                ...old,
+                                data: {
+                                  ...old.data,
+                                  [e]: event.target.value,
+                                },
+                              }));
+                            }}
+                          >
+                            {Roles.map((el, ind) => (
+                              <MenuItem key={ind} value={el}>
+                                {el}
+                              </MenuItem>
+                            ))}
+                          </TextField>
+                        )}
+                        {e == "TEACHERS" && !user.api.includes("student") && (
                           <>
                             <div className="addTeachers">
                               <DialogBox
@@ -235,6 +305,7 @@ const ActionComponent = () => {
                   })}
                 </>
               )}
+              {/* Section for Updating the data */}
               {user?.keysArr == undefined &&
                 Object.entries(user?.data)?.map((el) => {
                   return (
@@ -256,6 +327,30 @@ const ActionComponent = () => {
                           variant="outlined"
                         />
                       )}
+                      {(el[0] == "ROLE" || el[0] == "Role") &&
+                        !user.api.includes("student") && (
+                          <TextField
+                            select
+                            label="Select Role"
+                            defaultValue={user.data[el[0]]}
+                            sx={{ width: "14rem" }}
+                            onChange={(event) => {
+                              setUser((old: any) => ({
+                                ...old,
+                                data: {
+                                  ...old.data,
+                                  [el[0]]: event.target.value,
+                                },
+                              }));
+                            }}
+                          >
+                            {Roles.map((el, ind) => (
+                              <MenuItem key={ind} value={el}>
+                                {el}
+                              </MenuItem>
+                            ))}
+                          </TextField>
+                        )}
                       {el[0] == "TEACHERS" && (
                         <>
                           <div className="addTeachers">

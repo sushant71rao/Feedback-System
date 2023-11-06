@@ -117,17 +117,19 @@ const TeacherManage = () => {
             >
               Take Action
             </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="error"
-              onClick={() => {
-                setteachername({ [params.row.NAME]: params.row._id });
-                handleopen();
-              }}
-            >
-              <DeleteIcon></DeleteIcon>
-            </Button>
+            {params.row.Role == "Teacher" && (
+              <Button
+                size="small"
+                variant="contained"
+                color="error"
+                onClick={() => {
+                  setteachername({ [params.row.NAME]: params.row._id });
+                  handleopen();
+                }}
+              >
+                <DeleteIcon></DeleteIcon>
+              </Button>
+            )}
           </span>
         );
       },

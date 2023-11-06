@@ -8,6 +8,7 @@ interface props {
 const Datagrid = (Props: props) => {
   return (
     <>
+    
       <DataGrid
         sx={{
           "& .MuiDataGrid-cellContent": {

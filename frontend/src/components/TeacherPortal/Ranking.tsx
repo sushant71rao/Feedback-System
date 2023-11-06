@@ -68,12 +68,7 @@ const Ranking = () => {
                               <div
                                 className="box"
                                 style={{
-                                  backgroundColor:
-                                    ind == 0
-                                      ? "#ffe86c"
-                                      : ind == 1
-                                      ? "silver"
-                                      : "#C08261",
+                                  backgroundColor: "white",
                                 }}
                                 key={i}
                               >

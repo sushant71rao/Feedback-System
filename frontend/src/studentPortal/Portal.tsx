@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
 
 import { Button } from "@mui/material";
+import Loading from "../components/Loading";
+import CircularLoading from "../components/CircularLoading";
 
 const Portal = () => {
   let { student } = useContext(AuthContext);
@@ -31,6 +33,7 @@ const Portal = () => {
     type: "SELECT TEACHER" | "SELECT SESSION" | "SAVE VOTE";
     payload: any;
   };
+  let [loading, setLoading] = useState(true);
   let initial: state = {
     session: { _id: "", Name: "", isValid: false },
     teacher: { _id: "", NAME: "" },
@@ -76,13 +79,13 @@ const Portal = () => {
   const [Teacher, setTeacher] = useState<[Teacher]>();
   const [question, setQuestions] = useState<Questionarrie>();
   let fetchfn = async () => {
+    setLoading(true);
     let temp = await axios.get(
       import.meta.env.VITE_GET_SESSION + `?isActive=true`,
       {
         withCredentials: true,
       }
     );
-    console.log(temp?.data?.session[0]);
     let temp2 = await axios.get(import.meta.env.VITE_GET_TEACHERS, {
       withCredentials: true,
     });
@@ -99,8 +102,9 @@ const Portal = () => {
         isValid: temp?.data?.session[0].isActive,
       },
     });
+    setLoading(false);
   };
-  console.log(Currstate?.session);
+
   useEffect(() => {
     fetchfn();
   }, []);
@@ -146,121 +150,135 @@ const Portal = () => {
   };
   return (
     <>
-      {Currstate?.session?.isValid ? (
-        <div>
-          <ToastContainer />
-          <div className="form-n-instruction">
-            <form className="portal">
-              <h2 style={{ color: "orange" }}>
-                Session Name : {Currstate.session?.Name}
-              </h2>
-              <span>
-                <label htmlFor="Teacher">Select the Teacher</label>
-                <select
-                  name="Teacher"
-                  id="Teacher"
-                  onChange={(event) => {
-                    let data = JSON.parse(event.target.value);
-                    dispatch({
-                      type: "SELECT TEACHER",
-                      payload: {
-                        _id: data._id,
-                        NAME: data.NAME,
-                      },
-                    });
-                  }}
-                >
-                  <option value={"selectTeacher"}>Select an option</option>
-                  {Teacher?.map((e, i) => {
-                    return (
-                      <option
-                        value={JSON.stringify(e)}
-                        key={i}
-                        style={{
-                          color: student?.whomVoted?.includes(e._id)
-                            ? "green"
-                            : "",
-                        }}
-                      >
-                        {e.NAME}
-                      </option>
-                    );
-                  })}
-                </select>
-              </span>
-            </form>
-            <div className="instructions">
-              <h2>Instructions</h2>
-              <ul>
-                <li>
-                  Select the green Sessions only for the voting as they Are
-                  Active Sessions
-                </li>
-                <li>For One Session You can vote a teacher only Once</li>
-                <li>
-                  After selecting the Teacher and Valid Session,The voting
-                  Portal will Appear
-                </li>
-                <li>
-                  LeftMost Circle indicates Least marks and RightMost Indicates
-                  Most Marks
-                </li>
-              </ul>
-            </div>
-          </div>
-          {Currstate.session.isValid && Currstate.teacher._id != "" && (
-            <div className="form-container">
-              <form className="feedback" onSubmit={(e) => Formhandler(e)}>
-                <h3>{"Prof. " + Currstate.teacher?.NAME}</h3>
-                <div className="feedback-form">
-                  <div>
-                    {Object.values(question || {})
-                      .slice(1, Object.values(question || {}).length - 1)
-                      .map((e, i) => {
+      <ToastContainer />
+      {loading ? (
+        <CircularLoading></CircularLoading>
+      ) : (
+        <>
+          {Currstate.session.isValid ? (
+            <>
+              <div className="form-n-instruction">
+                <form className="portal">
+                  <h2 style={{ color: "orange" }}>
+                    Session Name : {Currstate.session?.Name}
+                  </h2>
+                  <span>
+                    <label htmlFor="Teacher">Select the Teacher</label>
+                    <select
+                      name="Teacher"
+                      id="Teacher"
+                      onChange={(event) => {
+                        let data = JSON.parse(event.target.value);
+                        dispatch({
+                          type: "SELECT TEACHER",
+                          payload: {
+                            _id: data._id,
+                            NAME: data.NAME,
+                          },
+                        });
+                      }}
+                    >
+                      <option value={"selectTeacher"}>Select an option</option>
+                      {Teacher?.map((e, i) => {
                         return (
-                          <div className="qna">
-                            <div className="question">
-                              {i + 1 + ") "}
-                              {e.toString()}
-                            </div>
-                            <div className="Radios">
-                              <Box
-                                sx={{
-                                  "& > legend": { mt: 2 },
-                                }}
-                              >
-                                <Rating
-                                  name="votes"
-                                  value={Object.values(Currstate.vote)[i]}
-                                  onChange={(event, newValue) => {
-                                    console.log(event);
-                                    dispatch({
-                                      type: "SAVE VOTE",
-                                      payload: {
-                                        question: `q${i}`,
-                                        value: newValue,
-                                      },
-                                    });
-                                  }}
-                                />
-                              </Box>
-                            </div>
-                          </div>
+                          <option
+                            value={JSON.stringify(e)}
+                            key={i}
+                            style={{
+                              color: student?.whomVoted?.includes(e._id)
+                                ? "green"
+                                : "",
+                            }}
+                          >
+                            {e.NAME}
+                          </option>
                         );
                       })}
-                  </div>
+                    </select>
+                  </span>
+                </form>
+                <div className="instructions">
+                  <h2>Instructions</h2>
+                  <ul>
+                    <li>
+                      Select the green Sessions only for the voting as they Are
+                      Active Sessions
+                    </li>
+                    <li>For One Session You can vote a teacher only Once</li>
+                    <li>
+                      After selecting the Teacher and Valid Session,The voting
+                      Portal will Appear
+                    </li>
+                    <li>
+                      LeftMost Circle indicates Least marks and RightMost
+                      Indicates Most Marks
+                    </li>
+                  </ul>
                 </div>
-                <Button color="primary" variant="contained" type="submit">
-                  SUBMIT
-                </Button>
-              </form>
+              </div>
+
+              {Currstate.session.isValid && Currstate.teacher._id != "" && (
+                <div className="form-container">
+                  <form className="feedback" onSubmit={(e) => Formhandler(e)}>
+                    <h3>{"Prof. " + Currstate.teacher?.NAME}</h3>
+                    <div className="feedback-form">
+                      <div>
+                        {Object.values(question || {})
+                          .slice(1, Object.values(question || {}).length - 1)
+                          .map((e, i) => {
+                            return (
+                              <div className="qna">
+                                <div className="question">
+                                  {i + 1 + ") "}
+                                  {e.toString()}
+                                </div>
+                                <div className="Radios">
+                                  <Box
+                                    sx={{
+                                      "& > legend": { mt: 2 },
+                                    }}
+                                  >
+                                    <Rating
+                                      name="votes"
+                                      value={Object.values(Currstate.vote)[i]}
+                                      onChange={(event, newValue) => {
+                                        console.log(event);
+                                        dispatch({
+                                          type: "SAVE VOTE",
+                                          payload: {
+                                            question: `q${i}`,
+                                            value: newValue,
+                                          },
+                                        });
+                                      }}
+                                    />
+                                  </Box>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
+                    <Button color="primary" variant="contained" type="submit">
+                      SUBMIT
+                    </Button>
+                  </form>
+                </div>
+              )}
+            </>
+          ) : (
+            <div
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontSize: "24px",
+                fontWeight: "bold",
+              }}
+            >
+              No Sessions Active Currently
             </div>
           )}
-        </div>
-      ) : (
-        <h2 style={{ textAlign: "center", color: "white" }}>
-          No Sessions Active Currently
-        </h2>
+        </>
       )}
     </>
   );

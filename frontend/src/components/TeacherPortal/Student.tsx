@@ -216,7 +216,6 @@ const Table = () => {
                         keysArr: [
                           "name",
                           "email",
-                          "Role",
                           "department",
                           "rollno",
                           "class",

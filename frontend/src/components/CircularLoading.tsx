@@ -1,6 +1,4 @@
-
-
-const Loading = () => {
+const CircularLoading = () => {
   return (
     <div
       style={{
@@ -12,11 +10,9 @@ const Loading = () => {
         alignItems: "center",
       }}
     >
-     
-      <span className="loader"></span>
-      
+      <span className="loaderWhite"></span>
     </div>
   );
 };
 
-export default Loading;
+export default CircularLoading;
