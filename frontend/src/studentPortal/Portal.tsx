@@ -9,7 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
 
 import { Button } from "@mui/material";
-import Loading from "../components/Loading";
 import CircularLoading from "../components/CircularLoading";
 
 const Portal = () => {
