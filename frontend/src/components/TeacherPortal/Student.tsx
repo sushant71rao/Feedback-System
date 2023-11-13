@@ -159,7 +159,7 @@ const Table = () => {
               variant="contained"
               onClick={handler}
             >
-              Take Action
+              Update
             </Button>
             <Button
               size="small"

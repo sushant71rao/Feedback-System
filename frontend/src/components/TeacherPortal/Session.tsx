@@ -113,7 +113,7 @@ const SessionManage = () => {
               variant="contained"
               onClick={handler}
             >
-              Take Action
+              Update
             </Button>
             <Button
               size="small"

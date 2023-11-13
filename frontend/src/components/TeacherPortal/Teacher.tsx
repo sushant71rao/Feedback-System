@@ -115,7 +115,7 @@ const TeacherManage = () => {
               variant="contained"
               onClick={() => handlerClick()}
             >
-              Take Action
+              Update
             </Button>
             {params.row.Role == "Teacher" && (
               <Button
