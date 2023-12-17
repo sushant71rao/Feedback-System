@@ -82,6 +82,15 @@ Both the frontend and backend servers should now be running, and the Feedback Sy
 
 Once the application is up and running, users can visit the website in their browser to submit feedback. They can enter their name, email, and leave their feedback in the provided form. The data will be stored in the MongoDB database.
 
+If you want to use the hosted website, Following are the credientials :
+Student:
+sushant@gmail.com
+pass:9860336973
+
+Teacher:
+salunkhe@gmail.com
+pass:9860336973
+
 ## Contributing
 
 We welcome contributions to improve and enhance the Feedback System website. If you find any bugs or have ideas for new features, feel free to open an issue or submit a pull request. Please make sure to follow our [Code of Conduct](CODE_OF_CONDUCT.md) when contributing.
