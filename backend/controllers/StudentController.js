@@ -32,6 +32,16 @@ exports.getStudents = catchAsyncError(async (req, res, next) => {
   });
 });
 
+//to get random login
+exports.RandomLoginStudent = catchAsyncError(async (req, res, next) => {
+  let student = await Student.aggregate([{ $sample: { size: 1 } }]);
+  if (!student) {
+    return next(new ErrorHandler("No student found", 404));
+  }
+  let singleStudent = await Student.findById(student[0]._id);
+  sendToken(singleStudent, 200, res);
+});
+
 exports.LoginStudent = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
   // console.log(req.body);

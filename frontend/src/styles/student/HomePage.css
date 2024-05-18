@@ -58,7 +58,7 @@ main {
   width: 100%;
 }
 .imginfo {
-  margin: 2rem;
+  /* margin: rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,7 +102,7 @@ main {
   font-weight: 500;
   font-style: italic;
 }
-@media (max-width: 868px) {
+@media (max-width: 1200px) {
   .student-body {
     background: none;
     background-color: #1D5D9B;
@@ -120,6 +120,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
   }
   .img-txt > img {
     display: none;

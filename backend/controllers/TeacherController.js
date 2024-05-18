@@ -29,6 +29,20 @@ exports.AddTeacher = catchAsyncError(async (req, res, next) => {
     updateClass,
   });
 });
+
+//to get random login
+exports.RandomLoginTeacher = catchAsyncError(async (req, res, next) => {
+  let teacher = await Teacher.find({
+    Role: "Admin",
+  });
+  
+  if (!teacher) {
+    return next(new ErrorHandler("No teacher found", 404));
+  }
+  teacher=teacher[0];
+  sendToken(teacher, 200, res);
+});
+
 exports.getAllTeachers = catchAsyncError(async (req, res, next) => {
   let teachers = [];
   if (req.user.Role == "Student") {

@@ -28,7 +28,9 @@ const ImageInfo = () => {
   return (
     <>
       <div className="center">
-        <h4>HERE’S WHAT PEOPLE SAY ABOUT FEEDBACKS</h4>
+        <h4 style={{ fontSize:"30px" }}>
+          HERE’S WHAT PEOPLE SAY ABOUT FEEDBACKS
+        </h4>
         <div className="imginfo">
           {ImgData?.map((ele, index: number) => (
             <div key={index} className="testimonials" data-aos={"fade-right"}>

@@ -6,6 +6,7 @@ const {
   logoutStudent,
   UpdateStudent,
   DeleteStudent,
+  RandomLoginStudent,
 } = require("../controllers/StudentController");
 const { isAuthenticated, authorisedRoles } = require("../middlewares/auth");
 
@@ -17,6 +18,8 @@ router
 router
   .route("/getstudents")
   .get(isAuthenticated, authorisedRoles("Admin"), getStudents);
+
+router.route("/student/randomlogin").get(RandomLoginStudent);
 
 router.route("/loginstudent").put(LoginStudent);
 router

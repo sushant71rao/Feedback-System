@@ -11,7 +11,7 @@
   min-height: 100vh;
   overflow-y: hidden;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(to bottom right, #bec1c8, #82c2e5);
+  background: linear-gradient(to bottom right, #5f7fc9, #034b71);
 }
 
 .container {
@@ -22,6 +22,7 @@
 }
 
 .container > .card {
+  cursor: pointer;
   width: 350px;
   min-height: 28rem;
   /* filter: blur(2px); */
@@ -33,6 +34,25 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+.test-account {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+.test-account > button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid;
+  background-color: #206fab;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.test-account :hover {
+  background: #085c9d;
 }
 .remove {
   display: none;
@@ -73,13 +93,14 @@ form > label {
   margin-bottom: 5px;
 }
 #loginbtn {
-  background-color: #70c1ff;
+  background-color: #206fab;
   color: #fff;
   font-weight: bolder;
   font-size: 16px;
 }
 #loginbtn:hover {
   background-color: #085c9d;
+  cursor: pointer;
 }
 .card > form > input {
   padding: 10px;

@@ -20,7 +20,6 @@ exports.isAuthenticated = catchAsyncError(async (req, res, next) => {
     next();
   } else {
     req.user = teacher;
-    // console.log("hi");
     next();
   }
 });

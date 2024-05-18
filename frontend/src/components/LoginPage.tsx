@@ -50,6 +50,43 @@ const LoginPage = () => {
     setformData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const RandomStudent = async () => {
+    try {
+      let res = await AxiosInstance.get("/student/randomlogin");
+
+      if (res?.data?.success) {
+        setStudent(res?.data?.setUser);
+        localStorage.setItem("User", JSON.stringify(res.data.user));
+        localStorage.setItem(
+          "Valid",
+          JSON.stringify(Date.now() * 4 * 60 * 60 * 1000)
+        );
+      }
+      window.location.reload();
+      // console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const RandomTeacher = async () => {
+    try {
+      let res = await AxiosInstance.get("/teacher/randomlogin");
+
+      if (res?.data?.success) {
+        setTeacher(res?.data?.setUser);
+        localStorage.setItem("User", JSON.stringify(res.data.user));
+        localStorage.setItem(
+          "Valid",
+          JSON.stringify(Date.now() * 4 * 60 * 60 * 1000)
+        );
+      }
+      window.location.reload();
+      // console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   console.log(url);
   return (
     <>
@@ -136,6 +173,10 @@ const LoginPage = () => {
                 ></TextField>
                 <input type="submit" value="Submit" id="loginbtn" />
               </form>
+              <div className="test-account">
+                <button onClick={() => RandomStudent()}>Test Student</button>
+                <button onClick={() => RandomTeacher()}>Test Teacher</button>
+              </div>
             </div>
           ) : (
             <div

@@ -56,7 +56,6 @@ studentSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
-  // console.log("p");
   this.password = await bcrypt.hash(this.password, 10);
 });
 
@@ -67,7 +66,6 @@ studentSchema.methods.getJwtToken = function () {
 };
 
 studentSchema.methods.comparePassword = async function (EnteredPassword) {
-  console.log("hi");
   return bcrypt.compare(EnteredPassword, this.password);
 };
 

@@ -9,6 +9,7 @@ const {
   DeleteTeacher,
   ChangePassword,
   ForgotPassword,
+  RandomLoginTeacher,
 } = require("../controllers/TeacherController");
 const { isAuthenticated, authorisedRoles } = require("../middlewares/auth");
 const { logoutUser } = require("../utils/commonControls");
@@ -36,4 +37,5 @@ router
   .route("/changeteacherpassword")
   .put(isAuthenticated, authorisedRoles(["Teacher", "Admin"]), ChangePassword);
 router.route("/password/forget").post(ForgotPassword);
+router.route("/teacher/randomlogin").get(RandomLoginTeacher);
 module.exports = router;
